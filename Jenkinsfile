@@ -15,13 +15,13 @@ pipeline{
             }
         }
         stage('Push Docker Image'){
-            when {
-                branch 'master'
-            }
+            // when {
+            //     branch 'master'
+            // }
             steps{
                 scripts {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-jenkins-token'){
-                        app.push("latest")
+                        app.push('latest')
                         app.push("${env.BUILD_NUMBER}")
                         app.push("${env.GIT_COMMIT}")
                     }
