@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
         DOCKER_IMAGE_NAME = "speedy1096/project-one"
-        MAVEN_IMAGE_NAME = "LogAggregationDemo:0.0.1-SNAPSHOT"
+        MAVEN_IMAGE_NAME = "log-aggregation-demo:0.0.1-SNAPSHOT"
     }
     stages{
         stage('Build'){
