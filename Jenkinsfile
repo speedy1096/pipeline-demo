@@ -19,7 +19,7 @@ pipeline{
             //     branch 'master'
             // }
             steps{
-                scripts {
+                script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-jenkins-token'){
                         app.push('latest')
                         app.push("${env.BUILD_NUMBER}")
