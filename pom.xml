@@ -16,23 +16,27 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
-		
-		
-<!-- Obtained from Sonarcloud which includes the configuration for this project's analysis -->
-		<sonar.projectKey>210201sre_pipeline-demo</sonar.projectKey>
-		<sonar.organization>210201sre</sonar.organization>
+
+
+		<!-- Obtained from Sonarcloud which includes the configuration for this 
+			project's analysis -->
+		<sonar.projectKey>speedy1096_pipeline-demo</sonar.projectKey>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		
+
 		<!-- We can configure some additional properties for test coverage reports -->
 		<coverage.reports.dir>target/coverage-reports</coverage.reports.dir>
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-		
+
 		<!-- This configuration excludes certain packages from being analyzed -->
-		<!-- This is helpful because Project2 only has requirements for test coverage of the services package -->
-		<!-- In industry, we would keep most packages. We would primarily exclude only the models package -->
-		<!-- The models package does not have any logic in it, it is designed just to store data -->
+		<!-- This is helpful because Project2 only has requirements for test coverage 
+			of the services package -->
+		<!-- In industry, we would keep most packages. We would primarily exclude 
+			only the models package -->
+		<!-- The models package does not have any logic in it, it is designed just 
+			to store data -->
 		<!-- We don't have to unit test our models, because there is no logic -->
-		<sonar.exclusions>src/**/models/**/*, src/**/controllers/**/*, src/**/repositories/**/*</sonar.exclusions>
+		<sonar.exclusions>src/**/models/**/*, src/**/controllers/**/*,
+			src/**/repositories/**/*</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -123,7 +127,8 @@
 				<configuration>
 					<outputDirectory>${coverage.reports.dir}</outputDirectory>
 					<excludes>
-						<!-- Both the sonar configuration above, and jacoco-maven-plugin need the exclusions -->
+						<!-- Both the sonar configuration above, and jacoco-maven-plugin need 
+							the exclusions -->
 						<exclude>**/models/**</exclude>
 						<exclude>**/controllers/**</exclude>
 					</excludes>
@@ -134,7 +139,7 @@
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
-					
+
 					<execution>
 						<id>report</id>
 						<phase>test</phase>
