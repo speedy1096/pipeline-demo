@@ -14,6 +14,22 @@ pipeline{
                 }
             }
         }
+
+        stage('Sonar Quality Analysis'){
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonar-token', installationName: 'sonarcloud'){
+                    sh 'mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+            }
+            }
+        }
+
+        stage('Wait for Quality Gate'){
+            steps{
+                timeout(time: 30, unit: 'MINUTES'){
+                    def qualitygate = waitForQualityGate abortPipeline: true
+                }
+            }
+        }
         stage('Push Docker Image'){
             // when {
             //     branch 'master'
@@ -27,6 +43,12 @@ pipeline{
                     }
                 }
             }
+        }
+    }
+
+    post{
+        always{
+
         }
     }
 }
